@@ -1,0 +1,42 @@
+interface producto {
+    nombre: string;
+    precio: number;
+    stock: number;
+}
+
+const productos: producto[] = [
+    {nombre: 'Laptop',precio: 150,stock: 10},
+    {nombre: 'Mouse',precio: 20,stock: 100},
+    {nombre: 'Teclado',precio: 45,stock: 50}
+]
+
+const AplicarDescuento = (productos: producto[], descuento:number)=>{
+    const productosconDescuento:producto[] = [];
+    for(let i=0; i<productos.length;i++){
+        const producto = productos[i];
+        const precioDescuento = producto.precio * (1 - descuento/100);
+
+        productosconDescuento.push({...producto,precio:precioDescuento})
+    }
+    return productosconDescuento;
+}
+
+const productosconDescuento = AplicarDescuento(productos, 10);
+console.log(productosconDescuento);
+
+const filtrarPorStock=(productos: producto[], stockMinimo:number)=>{
+    const productosFitrados:producto[] = [];
+
+    for (let i =0;i<productos.length;i++){
+        const producto = productos[i];
+        if(producto.stock >= stockMinimo){
+            productosFitrados.push(producto);
+        }
+    }
+
+    return productosFitrados;
+}
+
+const productosFiltrados = filtrarPorStock(productos, 50);
+console.log(productosFiltrados);
+
