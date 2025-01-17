@@ -1,0 +1,45 @@
+interface Usuario {
+    id: number;
+    nombre: string;
+    edad: number;
+  }
+  
+  const usuarios: Usuario[] = [
+    { id: 1, nombre: "Ana", edad: 25 },
+    { id: 2, nombre: "Luis", edad: 30 },
+    { id: 3, nombre: "María", edad: 22 }
+  ];
+
+  const mapearNombres = (usuarios: Usuario[])=> {
+    const nombres: string[] = [];
+    
+    for (let i = 0; i < usuarios.length; i++) {
+      nombres.push(usuarios[i].nombre);
+    }
+  
+    return nombres;
+  }
+  
+  // Ejemplo de uso
+  const nombres = mapearNombres(usuarios);
+  console.log(nombres); // ["Ana", "Luis", "María"]
+
+
+
+  const calcularEdadPromedio=(usuarios: Usuario[])=> {
+    const sumaEdades = usuarios.reduce((acc, usuario) => acc + usuario.edad, 0);
+    return sumaEdades / usuarios.length;
+  }
+  
+  // Ejemplo de uso
+  const edadPromedio = calcularEdadPromedio(usuarios);
+  console.log(edadPromedio); // 25.666666666666668 (aproximadamente 25.67)
+
+  // Función para filtrar usuarios mayores que una edad específica
+const filtrarUsuariosMayores = (usuarios: Usuario[], edadMinima: number)=>{
+    return usuarios.filter(usuario => usuario.edad > edadMinima);
+  }
+  
+  // Ejemplo de uso
+  const mayores = filtrarUsuariosMayores(usuarios, 25);
+  console.log(mayores); // [{ id: 2, nombre: "Luis", edad: 30 }]
